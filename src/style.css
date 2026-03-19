@@ -1,0 +1,168 @@
+:root {
+    --bg: #f0f0f0;
+    --panel: #ececec;
+    --text: #1f1f1f;
+    --muted: #4f4f4f;
+    --border: #c8c8c8;
+    --primary: #6d6d6d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.app-shell {
+    width: min(920px, 100%);
+    background: var(--panel);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f7f7f7;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px;
+}
+
+.nav-left {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-btn {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #333;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.title-wrap h1 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.title-wrap p {
+    margin: 2px 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.panel {
+    padding: 24px;
+}
+
+.content {
+    background: #f4f4f4;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.actions-row {
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.content h2 {
+    margin-top: 0;
+}
+
+.content p {
+    margin: 8px 0 16px;
+    color: var(--muted);
+}
+
+.action-btn {
+    background: var(--primary);
+    color: #fff;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.action-btn:hover {
+    background: #4f4f4f;
+}
+
+.secondary-btn {
+    background: #d1d1d1;
+    color: #222;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.secondary-btn:hover {
+    background: #b9b9b9;
+}
+
+.group-list {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.group-card {
+    border: 1px solid #c0c0c0;
+    border-radius: 8px;
+    background: #fff;
+    padding: 10px 12px;
+    color: #1a1a1a;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.delete-btn {
+    background: #ff5f5f;
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.delete-btn:hover {
+    background: #e23c3c;
+}
+
+.group-card {
+    border: 1px solid #dde0e4;
+    border-radius: 8px;
+    background: #fff;
+    padding: 10px 12px;
+    color: #1a1a1a;
+    font-weight: 500;
+}

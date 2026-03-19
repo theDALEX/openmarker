@@ -1,0 +1,18 @@
+{
+  "name": "openmarker",
+  "version": "1.0.0",
+  "description": "openmarker is an AI-powered grading assistant for teachers and lecturers. Automatically grade essays and reports so you can spend more time teaching and engaging with students.",
+  "license": "MIT",
+  "author": "Dalex Davis",
+  "type": "commonjs",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "start-nodemon": "nodemon --exec electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "electron": "^41.0.3",
+    "nodemon": "^3.1.14"
+  }
+}

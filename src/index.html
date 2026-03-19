@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>OpenMarker</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="nav-left">
+          <button class="nav-btn">Home</button>
+          <button class="nav-btn">Models</button>
+        </div>
+        <div class="title-wrap">
+          <h1>OpenMarker</h1>
+          <p>Your AI-Powered marking assistant</p>
+        </div>
+      </header>
+
+      <main class="panel">
+        <section class="content">
+          <h2>Project Groups</h2>
+          <p>A minimal UI in grey/white for your app.</p>
+          <div class="actions-row">
+            <button id="addGroupBtn" class="action-btn">+ Add Group</button>
+            <button id="clearGroupsBtn" class="secondary-btn">
+              Clear Groups
+            </button>
+          </div>
+          <div id="groupList" class="group-list"></div>
+        </section>
+      </main>
+    </div>
+  </body>
+  <script src="./render.js"></script>
+</html>
