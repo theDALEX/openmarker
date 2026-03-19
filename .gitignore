@@ -1,5 +1,8 @@
 # Node dependencies
 node_modules/
 
+#dev files
+nodemon.json
+
 # Environment variables
 .env

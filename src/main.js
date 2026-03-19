@@ -3,9 +3,9 @@ const path = require('node:path')
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        title: 'OpenMarker | Your AI-Powered marking assistant',
+        width: 900,
+        height: 700,
+        title: 'OpenMarker | Your AI-Powered Marking Assistant',
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         }

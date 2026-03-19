@@ -4,8 +4,8 @@ if (information) {
 }
 
 const addGroupBtn = document.getElementById('addGroupBtn')
-const clearGroupsBtn = document.getElementById('clearGroupsBtn')
 const groupList = document.getElementById('groupList')
+
 let groupCount = 0
 
 function addGroup() {
@@ -32,9 +32,3 @@ if (addGroupBtn && groupList) {
     addGroupBtn.addEventListener('click', addGroup)
 }
 
-if (clearGroupsBtn && groupList) {
-    clearGroupsBtn.addEventListener('click', () => {
-        groupList.innerHTML = ''
-        groupCount = 0
-    })
-}
