@@ -52,6 +52,14 @@ body {
     cursor: pointer;
 }
 
+.image-wrap {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+
 .title-wrap h1 {
     margin: 0;
     font-size: 1.1rem;
@@ -105,10 +113,17 @@ body {
     background: #b9b9b9;
 }
 
-.group-list {
+.home-group-list {
     margin-top: 14px;
     display: grid;
     grid-template-columns: auto auto auto;
+    padding: 10px
+}
+
+.group-list {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
     padding: 10px
 }
 
@@ -121,7 +136,7 @@ body {
     font-weight: 500;
     display: flex;
     align-items: center;
-    margin: 8px;
+    margin: 10px;
     justify-content: space-between;
 }
 

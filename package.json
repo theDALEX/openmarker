@@ -9,10 +9,37 @@
   "scripts": {
     "start": "electron .",
     "start-nodemon": "nodemon --exec electron .",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    "appId": "com.dalexdavis.openmarker",
+    "productName": "OpenMarker",
+    "files": [
+      "src/**/*",
+      "node_modules/**/*"
+    ],
+    "asarUnpack": [
+      "node_modules/node-llama-cpp/**"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "devDependencies": {
     "electron": "^41.0.3",
+    "electron-builder": "^25.1.8",
     "nodemon": "^3.1.14"
   },
   "dependencies": {

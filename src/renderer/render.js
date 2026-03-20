@@ -66,7 +66,7 @@ function makeGroupCard(g) {
     card.className = 'group-card'
 
     const info = document.createElement('div')
-    info.innerHTML = `<strong>${g.name}</strong> <small style="color:var(--muted)">${g.submissionCount} submission${g.submissionCount !== 1 ? 's' : ''}</small>`
+    info.innerHTML = `<strong>${g.name}</strong><br> <small style="color:var(--muted)">${g.submissionCount} submission${g.submissionCount !== 1 ? 's' : ''}</small>`
 
     const btns = document.createElement('div')
     btns.style.display = 'flex'
