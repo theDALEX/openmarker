@@ -32,7 +32,7 @@
 
           <!-- Chat -->
           <div class="chat-section">
-            <h3 style="margin-bottom:10px">Chat with your AI assistant</h3>
+            <h3 style="margin-bottom:10px">Chat with your AI assistant | Test window to check your assistant</h3>
             <div id="chatMessages" class="chat-messages"></div>
             <div class="chat-input-row">
               <textarea id="chatInput" class="chat-input" placeholder="Ask anything..." rows="2"></textarea>
@@ -53,6 +53,16 @@
             <!-- Left: submissions + run -->
             <div class="detail-col">
               <h3>Submissions</h3>
+
+              <!-- Naming convention warning -->
+              <div class="submission-warning">
+                <strong>⚠ File naming convention</strong><br>
+                Each file must be a <code>.docx</code> Word document named:<br>
+                <code>StudentName_StudentID.docx</code><br>
+                <small>e.g. <em>Jane Smith_12345678.docx</em></small><br>
+                <small>The AI uses the filename to identify each student in the grades report.</small>
+              </div>
+
               <div class="actions-row">
                 <button id="addSubmissionsBtn" class="action-btn">+ Add Files</button>
                 <button id="runMarkingBtn" class="action-btn run-btn">▶ Run Marking</button>
@@ -77,7 +87,8 @@
           <!-- Grades output -->
           <div id="gradesSection" class="hidden">
             <h3>Grades</h3>
-            <pre id="gradesOutput" class="grades-output"></pre>
+            <p style="font-size:0.88rem; color:var(--muted)">Grades have been generated and saved as a Word document.</p>
+            <button id="downloadGradesBtn" class="action-btn">⬇ Download Grades (.docx)</button>
           </div>
         </section>
 

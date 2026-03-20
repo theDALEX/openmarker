@@ -22,7 +22,7 @@ const matrixEditor = document.getElementById('matrixEditor')
 const saveMatrixBtn = document.getElementById('saveMatrixBtn')
 const matrixSaveStatus = document.getElementById('matrixSaveStatus')
 const gradesSection = document.getElementById('gradesSection')
-const gradesOutput = document.getElementById('gradesOutput')
+const downloadGradesBtn = document.getElementById('downloadGradesBtn')
 
 // Models
 const supportedModelsList = document.getElementById('supportedModelsList')
@@ -113,7 +113,6 @@ async function openGroup(name) {
     markingStatus.classList.add('hidden')
     markingResults.innerHTML = ''
     gradesSection.classList.add('hidden')
-    gradesOutput.textContent = ''
     showView('group')
 
     await refreshSubmissions()
@@ -143,10 +142,8 @@ async function loadMatrix() {
 
 async function loadGrades() {
     const result = await window.electronAPI.getGrades(currentGroup)
-    if (result.success && result.content.trim() !== '# Grades\n\n') {
-        gradesOutput.textContent = result.content
-        gradesSection.classList.remove('hidden')
-    }
+    if (result.exists) gradesSection.classList.remove('hidden')
+    else gradesSection.classList.add('hidden')
 }
 
 addSubmissionsBtn.addEventListener('click', async () => {
@@ -199,6 +196,11 @@ runMarkingBtn.addEventListener('click', async () => {
     }
 
     await loadGrades()
+})
+
+downloadGradesBtn.addEventListener('click', async () => {
+    const result = await window.electronAPI.exportGrades(currentGroup)
+    if (!result.success && !result.canceled) alert(`Export failed: ${result.error}`)
 })
 
 function escHtml(str) {

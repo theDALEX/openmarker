@@ -96,9 +96,8 @@ app.whenReady().then(() => {
     })
 
     ipcMain.handle('get-grades', async (_e, groupName) => {
-        const filePath = path.join(getGroupsRoot(), groupName, 'grades.md')
-        if (!fs.existsSync(filePath)) return { success: false, content: '' }
-        return { success: true, content: fs.readFileSync(filePath, 'utf8') }
+        const filePath = path.join(getGroupsRoot(), groupName, 'grades.docx')
+        return { success: fs.existsSync(filePath), exists: fs.existsSync(filePath) }
     })
 
     ipcMain.handle('list-submissions', async (_e, groupName) => {
@@ -110,19 +109,21 @@ app.whenReady().then(() => {
     ipcMain.handle('add-submissions', async (_e, groupName) => {
         const win = BrowserWindow.getFocusedWindow()
         const result = await dialog.showOpenDialog(win, {
-            title: 'Select student submissions',
+            title: 'Select student submissions (.docx only)',
             properties: ['openFile', 'multiSelections'],
-            filters: [{ name: 'Text files', extensions: ['txt', 'md', 'pdf', 'docx'] }]
+            filters: [{ name: 'Word Documents', extensions: ['docx'] }]
         })
         if (result.canceled || result.filePaths.length === 0) return { success: false, canceled: true }
         const subDir = path.join(getGroupsRoot(), groupName, 'submissions')
         const copied = []
+        const skipped = []
         for (const src of result.filePaths) {
-            const dest = path.join(subDir, path.basename(src))
-            fs.copyFileSync(src, dest)
-            copied.push(path.basename(src))
+            const basename = path.basename(src)
+            if (!basename.endsWith('.docx')) { skipped.push(basename); continue }
+            fs.copyFileSync(src, path.join(subDir, basename))
+            copied.push(basename)
         }
-        return { success: true, files: copied }
+        return { success: true, files: copied, skipped }
     })
 
     // ── AI Marking ────────────────────────────────────────────────────────────
@@ -132,30 +133,31 @@ app.whenReady().then(() => {
         const groupPath = path.join(getGroupsRoot(), groupName)
         const subDir = path.join(groupPath, 'submissions')
         const matrixPath = path.join(groupPath, 'marking_matrix.md')
-        const gradesPath = path.join(groupPath, 'grades.md')
+        const gradesDocxPath = path.join(groupPath, 'grades.docx')
 
-        const submissions = fs.readdirSync(subDir).filter(f => !f.startsWith('.'))
-        if (submissions.length === 0) return { success: false, error: 'No submissions found' }
+        const submissions = fs.readdirSync(subDir).filter(f => f.endsWith('.docx'))
+        if (submissions.length === 0) return { success: false, error: 'No .docx submissions found.' }
 
         const matrix = fs.readFileSync(matrixPath, 'utf8')
 
-        // Find a downloaded model
         const modelsFolder = path.join(app.getPath('userData'), 'models')
-        if (!fs.existsSync(modelsFolder)) return { success: false, error: 'No models downloaded. Go to Models tab and download one first.' }
+        if (!fs.existsSync(modelsFolder)) return { success: false, error: 'No models downloaded. Go to Models tab first.' }
         const modelFiles = fs.readdirSync(modelsFolder).filter(f => f.endsWith('.gguf'))
-        if (modelFiles.length === 0) return { success: false, error: 'No models downloaded. Go to Models tab and download one first.' }
+        if (modelFiles.length === 0) return { success: false, error: 'No models downloaded. Go to Models tab first.' }
         const modelPath = path.join(modelsFolder, modelFiles[0])
 
         sender.send('marking-progress', { type: 'start', total: submissions.length })
 
-        let gradesOutput = `# Grades — ${groupName}\n\nGenerated: ${new Date().toLocaleString()}\n\n---\n\n`
+        const mammoth = require('mammoth')
+        const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType } = require('docx')
+
+        const gradeSections = []
+        const resultsForUI = []
 
         try {
             const { getLlama, LlamaChatSession } = await import('node-llama-cpp')
             const llama = await getLlama()
-            const model = await llama.loadModel({ modelPath })
-            const context = await model.createContext({ contextSize: 4096 })
-            const session = new LlamaChatSession({ contextSequence: context.getSequence() })
+            const llamaModel = await llama.loadModel({ modelPath })
 
             for (let i = 0; i < submissions.length; i++) {
                 const filename = submissions[i]
@@ -164,30 +166,76 @@ app.whenReady().then(() => {
                 const subPath = path.join(subDir, filename)
                 let studentWork = ''
                 try {
-                    studentWork = fs.readFileSync(subPath, 'utf8')
+                    const result = await mammoth.extractRawText({ path: subPath })
+                    studentWork = result.value
                 } catch {
-                    studentWork = '[Could not read file — may be binary format]'
+                    studentWork = '[Could not read .docx file]'
                 }
 
-                const prompt = buildPrompt(matrix, studentWork, filename)
-                const response = await session.prompt(prompt, { maxTokens: 512 })
-
-                gradesOutput += `## ${filename}\n\n${response.trim()}\n\n---\n\n`
-                sender.send('marking-progress', { type: 'done-one', file: filename, result: response.trim() })
-
-                // Reset session for next student to avoid context bleed
+                const context = await llamaModel.createContext({ contextSize: 4096 })
+                const session = new LlamaChatSession({ contextSequence: context.getSequence() })
+                const response = await session.prompt(buildPrompt(matrix, studentWork, filename), { maxTokens: 512 })
                 await context.dispose()
-                const freshContext = await model.createContext({ contextSize: 4096 })
-                session.contextSequence = freshContext.getSequence()
+
+                const resultText = response.trim()
+                resultsForUI.push({ file: filename, result: resultText })
+                sender.send('marking-progress', { type: 'done-one', file: filename, result: resultText })
+
+                // Build docx paragraphs for this student
+                gradeSections.push(
+                    new Paragraph({ text: filename, heading: HeadingLevel.HEADING_2 }),
+                    ...resultText.split('\n').map(line =>
+                        new Paragraph({
+                            children: [new TextRun({ text: line || ' ', size: 24 })],
+                            spacing: { after: 80 }
+                        })
+                    ),
+                    new Paragraph({ text: '', spacing: { after: 200 } })
+                )
             }
 
-            await model.dispose()
+            await llamaModel.dispose()
         } catch (err) {
             return { success: false, error: err.message }
         }
 
-        fs.writeFileSync(gradesPath, gradesOutput, 'utf8')
+        // Write grades.docx
+        const doc = new Document({
+            sections: [{
+                children: [
+                    new Paragraph({
+                        text: `Grades — ${groupName}`,
+                        heading: HeadingLevel.HEADING_1,
+                        alignment: AlignmentType.CENTER
+                    }),
+                    new Paragraph({
+                        children: [new TextRun({ text: `Generated: ${new Date().toLocaleString()}`, italics: true, size: 20, color: '888888' })],
+                        alignment: AlignmentType.CENTER,
+                        spacing: { after: 400 }
+                    }),
+                    ...gradeSections
+                ]
+            }]
+        })
+
+        const buffer = await Packer.toBuffer(doc)
+        fs.writeFileSync(gradesDocxPath, buffer)
+
         sender.send('marking-progress', { type: 'complete' })
+        return { success: true, results: resultsForUI }
+    })
+
+    ipcMain.handle('export-grades', async (_e, groupName) => {
+        const gradesDocxPath = path.join(getGroupsRoot(), groupName, 'grades.docx')
+        if (!fs.existsSync(gradesDocxPath)) return { success: false, error: 'No grades file found. Run marking first.' }
+        const win = BrowserWindow.getFocusedWindow()
+        const { filePath, canceled } = await dialog.showSaveDialog(win, {
+            title: 'Save Grades',
+            defaultPath: `${groupName}_grades.docx`,
+            filters: [{ name: 'Word Document', extensions: ['docx'] }]
+        })
+        if (canceled || !filePath) return { success: false, canceled: true }
+        fs.copyFileSync(gradesDocxPath, filePath)
         return { success: true }
     })
 

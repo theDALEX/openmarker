@@ -107,9 +107,9 @@ body {
 
 .group-list {
     margin-top: 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px
 }
 
 .group-card {
@@ -121,6 +121,7 @@ body {
     font-weight: 500;
     display: flex;
     align-items: center;
+    margin: 8px;
     justify-content: space-between;
 }
 
@@ -368,4 +369,25 @@ h3 {
     font-size: 0.82rem;
     color: var(--muted);
     font-style: italic;
+}
+
+/* ── Submission warning ───────────────────────────────────────────────────── */
+.submission-warning {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-left: 4px solid #f9a825;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #4a3800;
+}
+
+.submission-warning code {
+    background: #fff3cd;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.88em;
 }

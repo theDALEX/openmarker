@@ -14,6 +14,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     listSubmissions: (groupName) => ipcRenderer.invoke('list-submissions', groupName),
     addSubmissions: (groupName) => ipcRenderer.invoke('add-submissions', groupName),
     runMarking: (groupName) => ipcRenderer.invoke('run-marking', groupName),
+    exportGrades: (groupName) => ipcRenderer.invoke('export-grades', groupName),
     onMarkingProgress: (cb) => ipcRenderer.on('marking-progress', (_e, data) => cb(data)),
     removeMarkingProgressListener: () => ipcRenderer.removeAllListeners('marking-progress'),
 
