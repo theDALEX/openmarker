@@ -2,14 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
     <title>OpenMarker | Your AI-Powered Marking Assistant</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
@@ -27,30 +20,80 @@
       </header>
 
       <main class="panel">
+
+        <!-- HOME: group list -->
         <section id="homeContent">
           <h2>Groups</h2>
-          <p id="info"></p>
           <div class="actions-row">
-            <button id="addGroupBtn" class="action-btn">+ Add Group</button>
+            <input id="newGroupName" class="text-input" type="text" placeholder="Group name..." />
+            <button id="addGroupBtn" class="action-btn">+ Create Group</button>
           </div>
           <div id="groupList" class="group-list"></div>
+
+          <!-- Chat -->
+          <div class="chat-section">
+            <h3 style="margin-bottom:10px">Chat with your AI assistant</h3>
+            <div id="chatMessages" class="chat-messages"></div>
+            <div class="chat-input-row">
+              <textarea id="chatInput" class="chat-input" placeholder="Ask anything..." rows="2"></textarea>
+              <button id="chatSendBtn" class="action-btn chat-send-btn">Send</button>
+            </div>
+            <div id="chatStatus" class="chat-status hidden"></div>
+          </div>
         </section>
 
+        <!-- GROUP DETAIL -->
+        <section id="groupDetail" class="hidden">
+          <div class="actions-row" style="margin-bottom:4px">
+            <button id="backBtn" class="secondary-btn">← Back</button>
+            <h2 id="groupDetailName" style="margin:0; font-size:1.2rem"></h2>
+          </div>
+
+          <div class="detail-grid">
+            <!-- Left: submissions + run -->
+            <div class="detail-col">
+              <h3>Submissions</h3>
+              <div class="actions-row">
+                <button id="addSubmissionsBtn" class="action-btn">+ Add Files</button>
+                <button id="runMarkingBtn" class="action-btn run-btn">▶ Run Marking</button>
+              </div>
+              <ul id="submissionsList" class="submissions-list"></ul>
+
+              <div id="markingStatus" class="marking-status hidden"></div>
+              <div id="markingResults" class="marking-results"></div>
+            </div>
+
+            <!-- Right: marking matrix -->
+            <div class="detail-col">
+              <h3>Marking Matrix</h3>
+              <textarea id="matrixEditor" class="matrix-editor" spellcheck="false"></textarea>
+              <div class="actions-row" style="margin-top:8px">
+                <button id="saveMatrixBtn" class="secondary-btn">Save Matrix</button>
+                <span id="matrixSaveStatus" style="font-size:0.8rem; color:var(--muted)"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grades output -->
+          <div id="gradesSection" class="hidden">
+            <h3>Grades</h3>
+            <pre id="gradesOutput" class="grades-output"></pre>
+          </div>
+        </section>
+
+        <!-- MODELS -->
         <section id="modelsContent" class="hidden">
           <h2>Models</h2>
-          <div id="modelStatus" class="model-status">
-            Checking local models...
-          </div>
+          <div id="modelStatus" class="model-status">Checking local models...</div>
           <div class="actions-row">
             <button id="refreshModelsBtn" class="secondary-btn">Refresh</button>
           </div>
-
           <h3 id="localModelsHeading" class="hidden">Local Models</h3>
           <div id="localModelsList" class="group-list"></div>
-
           <h3>Available to Download</h3>
           <div id="supportedModelsList" class="group-list"></div>
         </section>
+
       </main>
     </div>
   </body>

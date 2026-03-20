@@ -3,9 +3,13 @@ node_modules/
 
 #dev files
 nodemon.json
+.vscode
 
 # Environment variables
 .env
 
 #models
 .models
+
+# Local data (now stored in userData, but ignore if leftover)
+.groups
