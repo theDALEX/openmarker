@@ -17,8 +17,8 @@
     <div class="app-shell">
       <header class="topbar">
         <div class="nav-left">
-          <button class="nav-btn">Home</button>
-          <button class="nav-btn">Models</button>
+          <button id="homeNav" class="nav-btn">Home</button>
+          <button id="modelsNav" class="nav-btn">Models</button>
         </div>
         <div class="title-wrap">
           <h1>OpenMarker</h1>
@@ -27,12 +27,29 @@
       </header>
 
       <main class="panel">
-        <section class="content">
+        <section id="homeContent">
           <h2>Groups</h2>
+          <p id="info"></p>
           <div class="actions-row">
             <button id="addGroupBtn" class="action-btn">+ Add Group</button>
           </div>
           <div id="groupList" class="group-list"></div>
+        </section>
+
+        <section id="modelsContent" class="hidden">
+          <h2>Models</h2>
+          <div id="modelStatus" class="model-status">
+            Checking local models...
+          </div>
+          <div class="actions-row">
+            <button id="refreshModelsBtn" class="secondary-btn">Refresh</button>
+          </div>
+
+          <h3 id="localModelsHeading" class="hidden">Local Models</h3>
+          <div id="localModelsList" class="group-list"></div>
+
+          <h3>Available to Download</h3>
+          <div id="supportedModelsList" class="group-list"></div>
         </section>
       </main>
     </div>

@@ -67,28 +67,12 @@ body {
     padding: 24px;
 }
 
-.content {
-    background: #f4f4f4;
-    border: 1px solid #d9d9d9;
-    border-radius: 10px;
-    padding: 20px;
-}
-
 .actions-row {
     margin-top: 8px;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     align-items: center;
-}
-
-.content h2 {
-    margin-top: 0;
-}
-
-.content p {
-    margin: 8px 0 16px;
-    color: var(--muted);
 }
 
 .action-btn {
@@ -140,6 +124,15 @@ body {
     justify-content: space-between;
 }
 
+.hidden {
+    display: none;
+}
+
+.active-nav {
+    background: #dedede;
+    border-color: #999;
+}
+
 .delete-btn {
     background: #ff5f5f;
     color: #fff;
@@ -154,11 +147,30 @@ body {
     background: #e23c3c;
 }
 
-.group-card {
-    border: 1px solid #dde0e4;
-    border-radius: 8px;
-    background: #fff;
-    padding: 10px 12px;
-    color: #1a1a1a;
-    font-weight: 500;
+.local-model-card {
+    border-color: #a0c8a0;
+    background: #f4fbf4;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+}
+
+.local-badge {
+    display: inline-block;
+    background: #4caf50;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+}
+
+h3 {
+    margin: 20px 0 4px;
+    font-size: 0.95rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
