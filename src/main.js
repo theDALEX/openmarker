@@ -210,7 +210,7 @@ app.whenReady().then(() => {
                         alignment: AlignmentType.CENTER
                     }),
                     new Paragraph({
-                        children: [new TextRun({ text: `Generated: ${new Date().toLocaleString()}`, italics: true, size: 20, color: '888888' })],
+                        children: [new TextRun({ text: `Generated: ${new Date().toLocaleString()} | OpenMarker`, italics: true, size: 20, color: '888888' })],
                         alignment: AlignmentType.CENTER,
                         spacing: { after: 400 }
                     }),

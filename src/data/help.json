@@ -1,0 +1,72 @@
+{
+  "appName": "hekosdffjnApp",
+  "version": "1.0.0",
+  "description": "A lightweight interface for managing and running AI models.",
+  "developer": "Your Name / Company",
+  "license": "MIT",
+  "website": "https://example.com",
+  "support": "https://example.com/support",
+  "system": {
+    "os": "Windows",
+    "runtime": "Electron"
+  },
+  "help": {
+    "fileNamingConvention": {
+      "title": "File Naming Convention",
+      "content": "Each submission file must be a <strong>.docx</strong> Word document named using the format: <code>StudentName_StudentID.docx</code><br><em>Example: Jane-Smith_12345678.docx</em><br>The AI uses the filename to identify each student in the grades report."
+    },
+    "markingMatrix": {
+      "title": "Marking Matrix",
+      "importance": "The marking matrix is crucial for determining how well the AI evaluates submissions. Good results depend on having a clear, detailed marking scheme. Here's an example format:",
+      "scheme": {
+        "title": "4. Mark Scheme",
+        "grades": [
+          {
+            "grade": "Poor",
+            "percentage": "[0 – 39%]",
+            "task1": "Incomplete or incoherent design. Major errors in topology, addressing, or configuration. Minimal/no evidence of understanding protocols (RIP, DHCP, VLAN).",
+            "task2": "Minimal or no testing. Results missing, incorrect, or not explained. No verification of connectivity between sites.",
+            "task3": "Unstructured or incomplete report. Missing major sections. Weak/no referencing. Poor academic style."
+          },
+          {
+            "grade": "Acceptable",
+            "percentage": "[40 – 49%]",
+            "task1": "Basic design attempted but with errors in topology or addressing. Limited configuration details. Partial application of required protocols.",
+            "task2": "At least two tests attempted but limited in scope. Partial connectivity shown. Weak explanation of results.",
+            "task3": "Report follows template loosely but lacks clarity. Some sections missing or superficial. Referencing inconsistent."
+          },
+          {
+            "grade": "Good",
+            "percentage": "[50 – 59%]",
+            "task1": "Clear design covering core devices and addressing. Some minor errors or omissions in configuration. Evidence of protocol implementation but not fully tested/consistent.",
+            "task2": "Two tests provided including routers/PCs in different cities. Basic explanation of results. Some errors/omissions in verification of RIP/DHCP/VLAN.",
+            "task3": "Clear structure following template. Adequate detail in most sections (design, tests, evaluation). Some evidence of analysis. References included but limited."
+          },
+          {
+            "grade": "Very Good",
+            "percentage": "[60 – 69%]",
+            "task1": "Well-structured design with correct addressing scheme (CIDR), secure device configs (SSH/passwords), and correct use of RIP/DHCP/VLAN. Some areas could be more detailed or optimised.",
+            "task2": "Multiple tests conducted with screenshots/output. Connectivity across sites demonstrated. Correct verification of at least RIP/DHCP/VLAN. Results explained with some discussion.",
+            "task3": "Well-written and structured report. Clear explanation of design/testing with supporting figures/screenshots. References correctly used. Some critical reflection included."
+          },
+          {
+            "grade": "Excellent",
+            "percentage": "[70 – 79%]",
+            "task1": "Comprehensive design with accurate configurations across devices. Efficient addressing plan, evidence of security best practices, and well-documented protocol implementation.",
+            "task2": "Extensive, well-structured testing showing thorough coverage. Correct use of ping/traceroute/CLI outputs. All required protocols verified. Clear interpretation of test results.",
+            "task3": "Professionally presented report. Strong integration of design/testing evidence. Critical discussion and evaluation present. Good academic style and referencing."
+          },
+          {
+            "grade": "Outstanding",
+            "percentage": "[80 – 100%]",
+            "task1": "Professional-level design with excellent clarity and justification. Fully optimised addressing, secure and scalable configuration. Integration of advanced Packet Tracer features or creative enhancements beyond brief.",
+            "task2": "Professional test strategy with comprehensive evidence (screenshots, logs, analysis). Critical evaluation of test outcomes. Use of advanced verification beyond brief.",
+            "task3": "High-quality report. Excellent clarity, justification, and critical evaluation. Strong visuals/diagrams, flawless academic writing, and comprehensive referencing."
+          }
+        ],
+        "department": "Department of Computing and Mathematics"
+      }
+    },
+    "futureNote": "<strong>Note:</strong> More file formats will be supported in the future with better integration."
+  }
+}

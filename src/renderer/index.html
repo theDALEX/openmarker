@@ -2,7 +2,10 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
     <title>OpenMarker | Your AI-Powered Marking Assistant</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
@@ -12,35 +15,55 @@
         <div class="nav-left">
           <button id="homeNav" class="nav-btn">Home</button>
           <button id="modelsNav" class="nav-btn">Models</button>
+          <button id="helpNav" class="nav-btn">Help</button>
+          <button id="aboutNav" class="nav-btn">About</button>
         </div>
-        
+
         <div class="image-wrap">
-        <img src="../../assets/openmarkerIcon.jpg" width="90" height="90" alt="OpenMarker Icon" />
-        <div class="title-wrap">
-          <h1>OpenMarker</h1>
-          <p>Your AI-Powered marking assistant</p>
-        </div>
+          <img
+            src="../../assets/openmarkerIcon.jpg"
+            width="90"
+            height="90"
+            alt="OpenMarker Icon"
+          />
+          <div class="title-wrap">
+            <h1>OpenMarker</h1>
+            <p>Your AI-Powered marking assistant</p>
+          </div>
         </div>
       </header>
 
       <main class="panel">
-
         <!-- HOME: group list -->
         <section id="homeContent">
           <h2>Groups</h2>
           <div class="actions-row">
-            <input id="newGroupName" class="text-input" type="text" placeholder="Group name..." />
+            <input
+              id="newGroupName"
+              class="text-input"
+              type="text"
+              placeholder="Group name..."
+            />
             <button id="addGroupBtn" class="action-btn">+ Create Group</button>
           </div>
           <div id="groupList" class="home-group-list"></div>
 
           <!-- Chat -->
           <div class="chat-section">
-            <h3 style="margin-bottom:10px">Chat with your AI assistant | Test window to check your assistant</h3>
+            <h3 style="margin-bottom: 10px">
+              Chat with your AI assistant | Test window to check your assistant
+            </h3>
             <div id="chatMessages" class="chat-messages"></div>
             <div class="chat-input-row">
-              <textarea id="chatInput" class="chat-input" placeholder="Ask anything..." rows="2"></textarea>
-              <button id="chatSendBtn" class="action-btn chat-send-btn">Send</button>
+              <textarea
+                id="chatInput"
+                class="chat-input"
+                placeholder="Ask anything..."
+                rows="2"
+              ></textarea>
+              <button id="chatSendBtn" class="action-btn chat-send-btn">
+                Send
+              </button>
             </div>
             <div id="chatStatus" class="chat-status hidden"></div>
           </div>
@@ -48,9 +71,9 @@
 
         <!-- GROUP DETAIL -->
         <section id="groupDetail" class="hidden">
-          <div class="actions-row" style="margin-bottom:4px">
+          <div class="actions-row" style="margin-bottom: 4px">
             <button id="backBtn" class="secondary-btn">← Back</button>
-            <h2 id="groupDetailName" style="margin:0; font-size:1.2rem"></h2>
+            <h2 id="groupDetailName" style="margin: 0; font-size: 1.2rem"></h2>
           </div>
 
           <div class="detail-grid">
@@ -60,16 +83,24 @@
 
               <!-- Naming convention warning -->
               <div class="submission-warning">
-                <strong>⚠ File naming convention</strong><br>
-                Each file must be a <code>.docx</code> Word document named:<br>
-                <code>StudentName_StudentID.docx</code><br>
-                <small>e.g. <em>Jane Smith_12345678.docx</em></small><br>
-                <small>The AI uses the filename to identify each student in the grades report.</small>
+                <strong>⚠ File naming convention</strong><br />
+                Each file must be a <code>.docx</code> Word document named:<br />
+                <code>StudentName_StudentID.docx</code><br />
+                <small>e.g. <em>Jane-Smith_12345678.docx</em></small
+                ><br />
+                <small
+                  >The AI uses the filename to identify each student in the
+                  grades report.</small
+                >
               </div>
 
               <div class="actions-row">
-                <button id="addSubmissionsBtn" class="action-btn">+ Add Files</button>
-                <button id="runMarkingBtn" class="action-btn run-btn">▶ Run Marking</button>
+                <button id="addSubmissionsBtn" class="action-btn">
+                  + Add Files
+                </button>
+                <button id="runMarkingBtn" class="action-btn run-btn">
+                  ▶ Run Marking
+                </button>
               </div>
               <ul id="submissionsList" class="submissions-list"></ul>
 
@@ -80,10 +111,29 @@
             <!-- Right: marking matrix -->
             <div class="detail-col">
               <h3>Marking Matrix</h3>
-              <textarea id="matrixEditor" class="matrix-editor" spellcheck="false"></textarea>
-              <div class="actions-row" style="margin-top:8px">
-                <button id="saveMatrixBtn" class="secondary-btn">Save Matrix</button>
-                <span id="matrixSaveStatus" style="font-size:0.8rem; color:var(--muted)"></span>
+              <p
+                style="
+                  font-size: 0.9em;
+                  color: var(--muted);
+                  margin-bottom: 8px;
+                "
+              >
+                Refer to the Help section for guidance on creating an effective
+                marking matrix.
+              </p>
+              <textarea
+                id="matrixEditor"
+                class="matrix-editor"
+                spellcheck="false"
+              ></textarea>
+              <div class="actions-row" style="margin-top: 8px">
+                <button id="saveMatrixBtn" class="secondary-btn">
+                  Save Matrix
+                </button>
+                <span
+                  id="matrixSaveStatus"
+                  style="font-size: 0.8rem; color: var(--muted)"
+                ></span>
               </div>
             </div>
           </div>
@@ -91,15 +141,21 @@
           <!-- Grades output -->
           <div id="gradesSection" class="hidden">
             <h3>Grades</h3>
-            <p style="font-size:0.88rem; color:var(--muted)">Grades have been generated and saved as a Word document.</p>
-            <button id="downloadGradesBtn" class="action-btn">⬇ Download Grades (.docx)</button>
+            <p style="font-size: 0.88rem; color: var(--muted)">
+              Grades have been generated and saved as a Word document.
+            </p>
+            <button id="downloadGradesBtn" class="action-btn">
+              ⬇ Download Grades (.docx)
+            </button>
           </div>
         </section>
 
-        <!-- MODELS -->
+        <!-- Models -->
         <section id="modelsContent" class="hidden">
           <h2>Models</h2>
-          <div id="modelStatus" class="model-status">Checking local models...</div>
+          <div id="modelStatus" class="model-status">
+            Checking local models...
+          </div>
           <div class="actions-row">
             <button id="refreshModelsBtn" class="secondary-btn">Refresh</button>
           </div>
@@ -109,6 +165,20 @@
           <div id="supportedModelsList" class="group-list"></div>
         </section>
 
+        <!-- Help -->
+        <section id="helpContent" class="hidden">
+          <h2>Help</h2>
+          <div id="aboutHeader"></div>
+          <div id="aboutMeta"></div>
+          <h3 id="localModelsHeading" class="hidden">Local Models</h3>
+          <div id="localModelsList" class="group-list"></div>
+        </section>
+
+        <!-- About -->
+        <section id="aboutContent" class="hidden">
+          <div id="aboutHeader"></div>
+          <div id="aboutMeta"></div>
+        </section>
       </main>
     </div>
   </body>

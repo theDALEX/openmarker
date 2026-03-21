@@ -4,6 +4,8 @@ const groupDetail = document.getElementById('groupDetail')
 const modelsContent = document.getElementById('modelsContent')
 const homeNav = document.getElementById('homeNav')
 const modelsNav = document.getElementById('modelsNav')
+const aboutNav = document.getElementById('aboutNav')
+const helpNav = document.getElementById('helpNav')
 
 // Home
 const newGroupName = document.getElementById('newGroupName')
@@ -31,6 +33,12 @@ const localModelsHeading = document.getElementById('localModelsHeading')
 const modelStatus = document.getElementById('modelStatus')
 const refreshModelsBtn = document.getElementById('refreshModelsBtn')
 
+//About
+const aboutContent = document.getElementById('aboutContent')
+
+//Help
+const helpContent = document.getElementById('helpContent')
+
 let currentGroup = null
 
 // ── Navigation ────────────────────────────────────────────────────────────────
@@ -38,16 +46,24 @@ function showView(view) {
     homeContent.classList.add('hidden')
     groupDetail.classList.add('hidden')
     modelsContent.classList.add('hidden')
+    aboutContent.classList.add('hidden')
+    helpContent.classList.add('hidden')
     homeNav.classList.remove('active-nav')
     modelsNav.classList.remove('active-nav')
+    aboutNav.classList.remove('active-nav')
+    helpNav.classList.remove('active-nav')
 
     if (view === 'home') { homeContent.classList.remove('hidden'); homeNav.classList.add('active-nav') }
     if (view === 'group') { groupDetail.classList.remove('hidden'); homeNav.classList.add('active-nav') }
     if (view === 'models') { modelsContent.classList.remove('hidden'); modelsNav.classList.add('active-nav') }
+    if (view === 'about') { aboutContent.classList.remove('hidden'); aboutNav.classList.add('active-nav') }
+    if (view === 'help') { helpContent.classList.remove('hidden'); helpNav.classList.add('active-nav') }
 }
 
 homeNav.addEventListener('click', () => { showView('home'); loadGroups() })
 modelsNav.addEventListener('click', () => { showView('models'); loadSupportedModels() })
+aboutNav.addEventListener('click', () => { showView('about'); loadAboutContent() })
+helpNav.addEventListener('click', () => { showView('help'); loadHelpContent() })
 backBtn.addEventListener('click', () => { showView('home'); loadGroups() })
 
 // ── Groups list ───────────────────────────────────────────────────────────────
@@ -384,6 +400,75 @@ chatSendBtn.addEventListener('click', sendChat)
 chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat() }
 })
+// ── About & Help ─────────────────────────────────────────────────────────────
+async function loadAboutContent() {
+    try {
+        const response = await fetch('../data/about.json')
+        const content = await response.json()
+        // Header
+        document.getElementById('aboutHeader').innerHTML = `
+         <h3>${content.appName}</h3>
+         <p>Version: ${content.version}</p>
+         <p>${content.description}</p>
+        `;
+
+        // Meta
+        document.getElementById('aboutMeta').innerHTML = `
+        <p><strong>Website:</strong> <a href="${content.website}" target="_blank">Visit</a></p>
+        <p><strong>GitHub:</strong> <a href="${content.github}" target="_blank">Vist</a></p>
+        <p><strong>License:</strong> ${content.license}</p>
+        <p><strong>Developer:</strong> ${content.developer}</p>
+        `;
+    } catch (err) {
+        console.error('Failed to load about.json', err);
+    }
+}
+
+async function loadHelpContent() {
+    try {
+        const response = await fetch('../data/help.json')
+        const content = await response.json()
+
+        // Build mark scheme table
+        let tableHTML = `
+            <h4>${content.help.markingMatrix.scheme.title}</h4>
+            <table border="1" style="border-collapse: collapse; width: 100%;">
+                <tr>
+                    <th>Grade</th>
+                    <th>Percentage</th>
+                    <th>Task 1: Network Design and Configuration [35%]</th>
+                    <th>Task 2: Network Connectivity Testing [35%]</th>
+                    <th>Task 3: Reporting [30%]</th>
+                </tr>`;
+
+        content.help.markingMatrix.scheme.grades.forEach(grade => {
+            tableHTML += `
+                <tr>
+                    <td>${grade.grade}</td>
+                    <td>${grade.percentage}</td>
+                    <td>${grade.task1}</td>
+                    <td>${grade.task2}</td>
+                    <td>${grade.task3}</td>
+                </tr>`;
+        });
+
+        tableHTML += `</table><p><em>${content.help.markingMatrix.scheme.department}</em></p>`;
+
+        helpContent.innerHTML = `
+            <h3>${content.help.fileNamingConvention.title}</h3>
+            <p>${content.help.fileNamingConvention.content}</p>
+
+            <h3>${content.help.markingMatrix.title}</h3>
+            <p>${content.help.markingMatrix.importance}</p>
+            ${tableHTML}
+
+            <p>${content.help.futureNote}</p>
+        `
+    } catch (err) {
+        helpContent.textContent = 'Unable to read help.json.'
+    }
+}
+
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 showView('home')
