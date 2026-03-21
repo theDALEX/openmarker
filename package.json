@@ -20,6 +20,7 @@
     "productName": "OpenMarker",
     "files": [
       "src/**/*",
+      "assets/**/*",
       "node_modules/**/*"
     ],
     "asarUnpack": [
@@ -39,14 +40,14 @@
       "category": "Education"
     },
     "nsis": {
-    "oneClick": false,
-    "allowToChangeInstallationDirectory": true,
-    "installerIcon": "assets/openmarkerIcon.ico",
-    "uninstallerIcon": "assets/openmarkerIcon.ico",
-    "deleteAppDataOnUninstall": false,
-    "createDesktopShortcut": true,
-    "createStartMenuShortcut": true
-  }
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/openmarkerIcon.ico",
+      "uninstallerIcon": "assets/openmarkerIcon.ico",
+      "deleteAppDataOnUninstall": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
   },
   "devDependencies": {
     "electron": "^41.0.3",
