@@ -18,6 +18,8 @@ jobs:
             build_flag: --linux
 
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
@@ -30,7 +32,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Cache node-llama-cpp binaries
         uses: actions/cache@v4
@@ -42,6 +44,7 @@ jobs:
         run: npm run build -- ${{ matrix.build_flag }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
