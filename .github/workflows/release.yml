@@ -41,7 +41,7 @@ jobs:
           key: llama-${{ matrix.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Build app
-        run: npm run build -- ${{ matrix.build_flag }}
+        run: npm run build -- ${{ matrix.build_flag }} --publish never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CSC_IDENTITY_AUTO_DISCOVERY: false

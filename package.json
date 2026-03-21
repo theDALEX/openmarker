@@ -18,7 +18,6 @@
   "build": {
     "appId": "com.dalexdavis.openmarker",
     "productName": "OpenMarker",
-    "publish": "never",
     "files": [
       "src/**/*",
       "node_modules/**/*"
