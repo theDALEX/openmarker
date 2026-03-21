@@ -28,7 +28,7 @@ app.whenReady().then(() => {
 
     //Icon
     ipcMain.handle('get-icon', async () => {
-        return path.join(__dirname, '../assets/openmarkerIcon.jpg')
+        return path.join(__dirname, '../assets/openmarkerIcon.png')
     })
     // ── Chat ──────────────────────────────────────────────────────────────────
 
