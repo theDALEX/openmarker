@@ -66,6 +66,15 @@ aboutNav.addEventListener('click', () => { showView('about'); loadAboutContent()
 helpNav.addEventListener('click', () => { showView('help'); loadHelpContent() })
 backBtn.addEventListener('click', () => { showView('home'); loadGroups() })
 
+//Icon
+async function loadAppIcon() {
+    if (!window.electronAPI) return
+    const iconPath = await window.electronAPI.getIcon()
+    document.getElementById('appIcon').src = iconPath
+}
+loadAppIcon()
+
+
 // ── Groups list ───────────────────────────────────────────────────────────────
 async function loadGroups() {
     groupList.innerHTML = ''

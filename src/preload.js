@@ -3,7 +3,8 @@ const { ipcRenderer, contextBridge } = require('electron')
 contextBridge.exposeInMainWorld('electronAPI', {
     // Chat
     chat: (message) => ipcRenderer.invoke('chat', message),
-
+    //Icon
+    getIcon: () => ipcRenderer.invoke('get-icon'),
     // Groups
     createGroup: (name) => ipcRenderer.invoke('create-group', name),
     listGroups: () => ipcRenderer.invoke('list-groups'),

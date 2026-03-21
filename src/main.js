@@ -26,6 +26,10 @@ app.whenReady().then(() => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
 
+    //Icon
+    ipcMain.handle('get-icon', async () => {
+        return path.join(__dirname, '../assets/openmarkerIcon.jpg')
+    })
     // ── Chat ──────────────────────────────────────────────────────────────────
 
     ipcMain.handle('chat', async (_event, message) => {

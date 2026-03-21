@@ -53,11 +53,17 @@ body {
     cursor: pointer;
 }
 
-.image-wrap {
+.Icon-wrap {
     display: flex;
     flex-direction: row;
     gap: 5px;
     align-items: center;
+}
+
+.Icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
 }
 
 
