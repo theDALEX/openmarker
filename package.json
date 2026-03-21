@@ -41,8 +41,8 @@
     "nsis": {
     "oneClick": false,
     "allowToChangeInstallationDirectory": true,
-    "installerIcon": "assets/icon.ico",
-    "uninstallerIcon": "assets/icon.ico",
+    "installerIcon": "assets/openmarkerIcon.ico",
+    "uninstallerIcon": "assets/openmarkerIcon.ico",
     "deleteAppDataOnUninstall": false,
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true
