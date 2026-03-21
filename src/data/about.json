@@ -4,6 +4,7 @@
   "description": "OpenMarker is a software tool that automates the marking and grading of student work using locally hosted LLM models on educators' devices. It delivers grading accuracy and feedback quality comparable to traditional methods, but in significantly less time, allowing results to be returned to students faster. Designed for individual educators as a locally run solution, OpenMarker can also be adopted by universities and institutions to build centralized systems that integrate seamlessly with their existing platforms. By reducing repetitive tasks, it enables educators to focus more on teaching, student engagement, and meaningful academic support.",
   "website": "https://thedalex.github.io/dx-store.html",
   "github": "https://github.com/theDALEX/openmarker.git",
+  "developerWebsite": "https://thedalex.github.io/",
   "developer": "Dalex Davis",
   "license": "MIT"
 }

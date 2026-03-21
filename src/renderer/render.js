@@ -417,7 +417,7 @@ async function loadAboutContent() {
         <p><strong>Website:</strong> <a href="${content.website}" target="_blank">Visit</a></p>
         <p><strong>GitHub:</strong> <a href="${content.github}" target="_blank">Vist</a></p>
         <p><strong>License:</strong> ${content.license}</p>
-        <p><strong>Developer:</strong> ${content.developer}</p>
+        <p><strong>Developer Website:</strong> <a href="${content.developerWebsite}" target="_blank">Dalex Davis</a></p>
         `;
     } catch (err) {
         console.error('Failed to load about.json', err);
