@@ -10,7 +10,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
     listGroups: () => ipcRenderer.invoke('list-groups'),
     deleteGroup: (name) => ipcRenderer.invoke('delete-group', name),
     getMarkingMatrix: (groupName) => ipcRenderer.invoke('get-marking-matrix', groupName),
-    saveMarkingMatrix: (groupName, content) => ipcRenderer.invoke('save-marking-matrix', groupName, content),
+    uploadMarkingMatrix: (groupName) => ipcRenderer.invoke('upload-marking-matrix', groupName),
+    downloadDemoMatrix: () => ipcRenderer.invoke('download-demo-matrix'),
     getGrades: (groupName) => ipcRenderer.invoke('get-grades', groupName),
     listSubmissions: (groupName) => ipcRenderer.invoke('list-submissions', groupName),
     addSubmissions: (groupName) => ipcRenderer.invoke('add-submissions', groupName),
@@ -19,12 +20,17 @@ contextBridge.exposeInMainWorld('electronAPI', {
     onMarkingProgress: (cb) => ipcRenderer.on('marking-progress', (_e, data) => cb(data)),
     removeMarkingProgressListener: () => ipcRenderer.removeAllListeners('marking-progress'),
 
-    // Models
-    downloadModel: (model) => ipcRenderer.invoke('download-model', model),
-    deleteModel: (filename) => ipcRenderer.invoke('delete-model', filename),
-    checkLocalModels: () => ipcRenderer.invoke('check-local-models'),
-    onDownloadProgress: (cb) => ipcRenderer.on('download-progress', (_e, data) => cb(data)),
-    removeDownloadProgressListener: () => ipcRenderer.removeAllListeners('download-progress'),
+    // Model (auto-managed)
+    checkModelReady: () => ipcRenderer.invoke('check-model-ready'),
+    notifyRendererReady: () => ipcRenderer.send('renderer-ready'),
+    onModelReady: (cb) => ipcRenderer.on('model-ready', (_e, data) => cb(data)),
+    onModelDownloadProgress: (cb) => ipcRenderer.on('model-download-progress', (_e, data) => cb(data)),
+    onModelDownloadError: (cb) => ipcRenderer.on('model-download-error', (_e, data) => cb(data)),
+    removeModelListeners: () => {
+        ipcRenderer.removeAllListeners('model-ready')
+        ipcRenderer.removeAllListeners('model-download-progress')
+        ipcRenderer.removeAllListeners('model-download-error')
+    },
 })
 
 contextBridge.exposeInMainWorld('versions', {

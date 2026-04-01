@@ -6,5 +6,15 @@
   "github": "https://github.com/theDALEX/openmarker.git",
   "developerWebsite": "https://thedalex.github.io/",
   "developer": "Dalex Davis",
-  "license": "MIT"
+  "license": "MIT",
+  "model": {
+    "name": "Mistral 7B Instruct v0.3 (Q4_K_M)",
+    "file": "Mistral-7B-Instruct-v0.3-Q4_K_M.gguf",
+    "source": "https://huggingface.co/thedalex/Mistral-7B-Instruct-v0.3-Q4_K_M-GGUF",
+    "quantization": "Q4_K_M",
+    "ramRequired": "6 GB",
+    "fileSize": "~4.37 GB",
+    "description": "Mistral 7B Instruct v0.3 is a fine-tuned instruction-following model based on Mistral 7B. The Q4_K_M quantization balances performance and memory usage, making it well-suited for running locally on educator devices. This model is hosted and distributed by the OpenMarker team via Hugging Face.",
+    "license": "Apache 2.0"
+  }
 }

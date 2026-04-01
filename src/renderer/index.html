@@ -14,8 +14,7 @@
       <header class="topbar">
         <div class="nav-left">
           <button id="homeNav" class="nav-btn">Home</button>
-          <button id="modelsNav" class="nav-btn">Models</button>
-          <button id="helpNav" class="nav-btn">Help</button>
+          <button id="helpNav" class="nav-btn">Guide</button>
           <button id="aboutNav" class="nav-btn">About</button>
         </div>
 
@@ -31,6 +30,7 @@
       <main class="panel">
         <!-- HOME: group list -->
         <section id="homeContent">
+          <div id="modelDownloadBanner" class="model-banner hidden"></div>
           <h2>Groups</h2>
           <div class="actions-row">
             <input
@@ -76,22 +76,19 @@
             <div class="detail-col">
               <h3>Submissions</h3>
 
-              <!-- Naming convention warning -->
+              <!-- Naming convention info -->
               <div class="submission-warning">
                 <strong>⚠ File naming convention</strong><br />
-                Each file must be a <code>.docx</code> Word document named:<br />
-                <code>StudentName_StudentID.docx</code><br />
-                <small>e.g. <em>Jane-Smith_12345678.docx</em></small
-                ><br />
-                <small
-                  >The AI uses the filename to identify each student in the
-                  grades report.</small
-                >
+                Accepted formats: <code>.docx</code> (Word) and <code>.pptx</code> (PowerPoint)<br />
+                Name each file as: <code>StudentName_StudentID.docx</code> or <code>.pptx</code><br />
+                <small>e.g. <em>Jane-Smith_12345678.pptx</em></small><br />
+                <small>The AI uses the filename to identify each student in the grades report.</small><br />
+                <button id="openHelpFromGroupBtn" class="guide-link-btn" style="margin-top:6px;">📖 View full guide</button>
               </div>
 
               <div class="actions-row">
                 <button id="addSubmissionsBtn" class="action-btn">
-                  + Add Files
+                  📂 Upload Student's Coursework
                 </button>
                 <button id="runMarkingBtn" class="action-btn run-btn">
                   ▶ Run Marking
@@ -106,29 +103,13 @@
             <!-- Right: marking matrix -->
             <div class="detail-col">
               <h3>Marking Matrix</h3>
-              <p
-                style="
-                  font-size: 0.9em;
-                  color: var(--muted);
-                  margin-bottom: 8px;
-                "
-              >
-                Refer to the Help section for guidance on creating an effective
-                marking matrix.
+              <p style="font-size: 0.9em; color: var(--muted); margin-bottom: 8px;">
+                Upload a Word (.docx) marking matrix. Need a template?
               </p>
-              <textarea
-                id="matrixEditor"
-                class="matrix-editor"
-                spellcheck="false"
-              ></textarea>
-              <div class="actions-row" style="margin-top: 8px">
-                <button id="saveMatrixBtn" class="secondary-btn">
-                  Save Matrix
-                </button>
-                <span
-                  id="matrixSaveStatus"
-                  style="font-size: 0.8rem; color: var(--muted)"
-                ></span>
+              <button id="downloadDemoMatrixBtn" class="secondary-btn">⬇ Download Demo Template</button>
+              <div class="matrix-upload-area" id="matrixUploadArea">
+                <span id="matrixFileName">No matrix uploaded</span>
+                <button id="uploadMatrixBtn" class="action-btn" style="margin-top: 8px;">📂 Upload Matrix (.docx)</button>
               </div>
             </div>
           </div>
@@ -137,45 +118,37 @@
           <div id="gradesSection" class="hidden">
             <h3>Grades</h3>
             <p style="font-size: 0.88rem; color: var(--muted)">
-              Grades have been generated and saved as a Word document.
+              Grades have been generated. Choose your preferred format below.
             </p>
             <button id="downloadGradesBtn" class="action-btn">
-              ⬇ Download Grades (.docx)
+              ⬇ Download Grades
             </button>
           </div>
         </section>
 
-        <!-- Models -->
-        <section id="modelsContent" class="hidden">
-          <h2>Models</h2>
-          <div id="modelStatus" class="model-status">
-            Checking local models...
-          </div>
-          <div class="actions-row">
-            <button id="refreshModelsBtn" class="secondary-btn">Refresh</button>
-          </div>
-          <h3 id="localModelsHeading" class="hidden">Local Models</h3>
-          <div id="localModelsList" class="group-list"></div>
-          <h3>Available to Download</h3>
-          <div id="supportedModelsList" class="group-list"></div>
-        </section>
+        <!-- Models section removed — model is bundled and auto-downloaded -->
 
-        <!-- Help -->
+        <!-- Guide -->
         <section id="helpContent" class="hidden">
-          <h2>Help</h2>
-          <div id="aboutHeader"></div>
-          <div id="aboutMeta"></div>
-          <h3 id="localModelsHeading" class="hidden">Local Models</h3>
-          <div id="localModelsList" class="group-list"></div>
+          <h2>Guide</h2>
+          <div id="guideModelStatus" class="guide-model-status"></div>
+          <div id="helpBody"></div>
         </section>
 
         <!-- About -->
         <section id="aboutContent" class="hidden">
           <div id="aboutHeader"></div>
           <div id="aboutMeta"></div>
+          <div id="aboutModel"></div>
         </section>
       </main>
     </div>
   </body>
+  <script src="./logic/nav.js"></script>
+  <script src="./logic/groups.js"></script>
+  <script src="./logic/marking.js"></script>
+  <script src="./logic/chat.js"></script>
+  <script src="./logic/model.js"></script>
+  <script src="./logic/content.js"></script>
   <script src="./render.js"></script>
 </html>

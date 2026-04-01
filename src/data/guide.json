@@ -13,7 +13,23 @@
   "help": {
     "fileNamingConvention": {
       "title": "File Naming Convention",
-      "content": "Each submission file must be a <strong>.docx</strong> Word document named using the format: <code>StudentName_StudentID.docx</code><br><em>Example: Jane-Smith_12345678.docx</em><br>The AI uses the filename to identify each student in the grades report."
+      "content": "Each submission file must be named using the format: <code>StudentName_StudentID.ext</code><br><em>Example: Jane-Smith_12345678.docx</em> or <em>Jane-Smith_12345678.pptx</em><br>The AI uses the filename to identify each student in the grades report."
+    },
+    "supportedFormats": {
+      "title": "Supported File Formats",
+      "formats": [
+        {
+          "ext": ".docx",
+          "type": "Word Document",
+          "notes": "Standard student essay or report. Text is extracted automatically."
+        },
+        {
+          "ext": ".pptx",
+          "type": "PowerPoint Presentation",
+          "notes": "Slide text and notes are extracted and sent to the AI for marking."
+        }
+      ],
+      "matrixNote": "The marking matrix must be a <code>.docx</code> Word document. Download the demo template to get started."
     },
     "markingMatrix": {
       "title": "Marking Matrix",
