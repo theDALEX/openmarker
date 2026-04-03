@@ -14,6 +14,7 @@
       <header class="topbar">
         <div class="nav-left">
           <button id="homeNav" class="nav-btn">Home</button>
+          <button id="modelsNav" class="nav-btn">Models</button>
           <button id="helpNav" class="nav-btn">Guide</button>
           <button id="aboutNav" class="nav-btn">About</button>
         </div>
@@ -30,7 +31,9 @@
       <main class="panel">
         <!-- HOME: group list -->
         <section id="homeContent">
-          <div id="modelDownloadBanner" class="model-banner hidden"></div>
+          <div id="noModelNotice" class="no-model-notice hidden">
+            ⚠ No AI model downloaded yet. Go to <strong>Models</strong> to download one before you can run marking.
+          </div>
           <h2>Groups</h2>
           <div class="actions-row">
             <input
@@ -70,6 +73,7 @@
             <button id="backBtn" class="secondary-btn">← Back</button>
             <h2 id="groupDetailName" style="margin: 0; font-size: 1.2rem"></h2>
           </div>
+          <div class="all-model-status"></div>
 
           <div class="detail-grid">
             <!-- Left: submissions + run -->
@@ -126,12 +130,21 @@
           </div>
         </section>
 
-        <!-- Models section removed — model is bundled and auto-downloaded -->
+        <!-- Models -->
+        <section id="modelsContent" class="hidden">
+          <h2>Models</h2>
+          <p style="color:var(--muted); font-size:0.9rem; margin-bottom:16px;">Download or remove AI models. You need at least one model to run marking.</p>
+
+          <div id="localModelsList"></div>
+
+          <h3 style="margin-top:24px;">Available Models</h3>
+          <div id="availableModelsList"></div>
+        </section>
 
         <!-- Guide -->
         <section id="helpContent" class="hidden">
           <h2>Guide</h2>
-          <div id="guideModelStatus" class="guide-model-status"></div>
+          <div class="all-model-status"></div>
           <div id="helpBody"></div>
         </section>
 
@@ -139,16 +152,15 @@
         <section id="aboutContent" class="hidden">
           <div id="aboutHeader"></div>
           <div id="aboutMeta"></div>
-          <div id="aboutModel"></div>
         </section>
       </main>
     </div>
   </body>
-  <script src="./logic/nav.js"></script>
-  <script src="./logic/groups.js"></script>
-  <script src="./logic/marking.js"></script>
-  <script src="./logic/chat.js"></script>
-  <script src="./logic/model.js"></script>
-  <script src="./logic/content.js"></script>
+  <script src="./renderLogic/nav.js"></script>
+  <script src="./renderLogic/groups.js"></script>
+  <script src="./renderLogic/marking.js"></script>
+  <script src="./renderLogic/chat.js"></script>
+  <script src="./renderLogic/model.js"></script>
+  <script src="./renderLogic/content.js"></script>
   <script src="./render.js"></script>
 </html>

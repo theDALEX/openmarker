@@ -1,20 +1,11 @@
 {
   "appName": "OpenMarker",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "OpenMarker is a software tool that automates the marking and grading of student work using locally hosted LLM models on educators' devices. It delivers grading accuracy and feedback quality comparable to traditional methods, but in significantly less time, allowing results to be returned to students faster. Designed for individual educators as a locally run solution, OpenMarker can also be adopted by universities and institutions to build centralized systems that integrate seamlessly with their existing platforms. By reducing repetitive tasks, it enables educators to focus more on teaching, student engagement, and meaningful academic support.",
   "website": "https://thedalex.github.io/dx-store.html",
   "github": "https://github.com/theDALEX/openmarker.git",
+  "huggingface": "https://huggingface.co/thedalex",
   "developerWebsite": "https://thedalex.github.io/",
   "developer": "Dalex Davis",
-  "license": "MIT",
-  "model": {
-    "name": "Mistral 7B Instruct v0.3 (Q4_K_M)",
-    "file": "Mistral-7B-Instruct-v0.3-Q4_K_M.gguf",
-    "source": "https://huggingface.co/thedalex/Mistral-7B-Instruct-v0.3-Q4_K_M-GGUF",
-    "quantization": "Q4_K_M",
-    "ramRequired": "6 GB",
-    "fileSize": "~4.37 GB",
-    "description": "Mistral 7B Instruct v0.3 is a fine-tuned instruction-following model based on Mistral 7B. The Q4_K_M quantization balances performance and memory usage, making it well-suited for running locally on educator devices. This model is hosted and distributed by the OpenMarker team via Hugging Face.",
-    "license": "Apache 2.0"
-  }
+  "license": "MIT"
 }

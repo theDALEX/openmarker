@@ -2,7 +2,7 @@ const { ipcMain, app, BrowserWindow, dialog } = require('electron')
 const path = require('node:path')
 const fs = require('fs')
 const XLSX = require('xlsx')
-const { getGroupsRoot } = require('./groups')
+const { getGroupsRoot } = require('./groupsIpc')
 
 // Tokens reserved for the model's own response
 const RESPONSE_RESERVE = 600

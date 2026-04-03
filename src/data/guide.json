@@ -1,15 +1,4 @@
 {
-  "appName": "hekosdffjnApp",
-  "version": "1.0.0",
-  "description": "A lightweight interface for managing and running AI models.",
-  "developer": "Your Name / Company",
-  "license": "MIT",
-  "website": "https://example.com",
-  "support": "https://example.com/support",
-  "system": {
-    "os": "Windows",
-    "runtime": "Electron"
-  },
   "help": {
     "fileNamingConvention": {
       "title": "File Naming Convention",

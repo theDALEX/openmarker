@@ -20,9 +20,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
     onMarkingProgress: (cb) => ipcRenderer.on('marking-progress', (_e, data) => cb(data)),
     removeMarkingProgressListener: () => ipcRenderer.removeAllListeners('marking-progress'),
 
-    // Model (auto-managed)
+    // Models
     checkModelReady: () => ipcRenderer.invoke('check-model-ready'),
-    notifyRendererReady: () => ipcRenderer.send('renderer-ready'),
+    listLocalModels: () => ipcRenderer.invoke('list-local-models'),
+    deleteModel: (fileName) => ipcRenderer.invoke('delete-model', fileName),
+    downloadModel: (modelDef) => ipcRenderer.send('download-model', modelDef),
     onModelReady: (cb) => ipcRenderer.on('model-ready', (_e, data) => cb(data)),
     onModelDownloadProgress: (cb) => ipcRenderer.on('model-download-progress', (_e, data) => cb(data)),
     onModelDownloadError: (cb) => ipcRenderer.on('model-download-error', (_e, data) => cb(data)),

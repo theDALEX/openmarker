@@ -11,20 +11,13 @@ async function loadAboutContent() {
         document.getElementById('aboutMeta').innerHTML = `
         <p><strong>Website:</strong> <a href="${content.website}" target="_blank">Visit</a></p>
         <p><strong>GitHub:</strong> <a href="${content.github}" target="_blank">Visit</a></p>
+        <p>
+        <strong>HuggingFace:</strong> / for more information about the models 
+        <a href="${content.huggingface}" target="_blank">Visit</a>
+        </p>
         <p><strong>License:</strong> ${content.license}</p>
         <p><strong>Developer:</strong> <a href="${content.developerWebsite}" target="_blank">${content.developer}</a></p>
         `
-        if (content.model) {
-            const m = content.model
-            document.getElementById('aboutModel').innerHTML = `
-            <hr style="margin: 16px 0; border-color: var(--border)">
-            <h3>AI Model</h3>
-            <p><strong>${m.name}</strong></p>
-            <p>${m.description}</p>
-            <p><strong>Quantization:</strong> ${m.quantization} &nbsp;|&nbsp; <strong>RAM Required:</strong> ${m.ramRequired} &nbsp;|&nbsp; <strong>File Size:</strong> ${m.fileSize}</p>
-            <p><strong>License:</strong> ${m.license} &nbsp;|&nbsp; <strong>Source:</strong> <a href="${m.source}" target="_blank">Hugging Face</a></p>
-            `
-        }
     } catch (err) {
         console.error('Failed to load about.json', err)
     }

@@ -9,4 +9,5 @@ async function loadAppIcon() {
 loadAppIcon()
 showView('home')
 loadGroups()
-initModelDownload()
+initModelListeners()
+updateHomeModelNotice()

@@ -1,11 +1,27 @@
 [
   {
-    "name": "Mistral-7B-Instruct-v0.3-Q4_K_M-GGUF",
+    "name": "Mistral-7B-Instruct-v0.3-Q4_K_M",
     "file": "Mistral-7B-Instruct-v0.3-Q4_K_M.gguf",
     "url": "https://huggingface.co/thedalex/Mistral-7B-Instruct-v0.3-Q4_K_M-GGUF/resolve/main/Mistral-7B-Instruct-Q4_K_M.gguf?download=true",
-    "ram": "6GB",
+    "ram": "6 GB RAM",
     "size": "4.37 GB",
-    "info": "Mistral 7B Instruct v0.3 quantized to Q4_K_M. Optimised for instruction-following and academic marking tasks.",
-    "tag": "default"
+    "info": "Mistral 7B Instruct v0.3 quantized to Q4_K_M. Great quality for most tasks, but requires more RAM.",
+    "tag": [
+      "Recommended",
+      "Higher hardware requirements"
+    ]
+  },
+  {
+    "name": "Llama-3.2-3B-Instruct-Q4_K_M",
+    "file": "Llama-3.2-3B-Instruct-Q4_K_M.gguf",
+    "url": "https://huggingface.co/thedalex/Llama-3.2-3B-Instruct-Q4_K_M-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf?download=true",
+    "ram": "3 GB RAM",
+    "size": "2.02 GB",
+    "info": "Meta Llama 3.2 3B Instruct quantized to Q4_K_M. Faster and lighter, suitable for most everyday use cases.",
+    "tag": [
+      "Fast",
+      "Lightweight",
+      "Good for most use cases"
+    ]
   }
 ]
