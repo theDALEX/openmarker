@@ -104,4 +104,4 @@ OpenMarker is designed primarily as a local, individual-use tool for teachers an
 
 ## License
 
-MIT © [Dalex Davis](https://github.com/theDALEX)
+MIT © [Dalex Davis](https://thedalex.github.io/)
